@@ -1,4 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany, belongsTo} from '@loopback/repository';
+import {Replies} from './replies.model';
+import {Solutions} from './solutions.model';
 
 @model()
 export class Cases extends Entity {
@@ -14,13 +16,11 @@ export class Cases extends Entity {
     required: true,
   })
   title: string;
+  @hasMany(() => Replies, {keyTo: 'case_id'})
+  replies: Replies[];
 
-  @property({
-    type: 'number',
-    required: true,
-  })
+  @belongsTo(() => Solutions, {name: 'solutionId'})
   solution_id: number;
-
 
   constructor(data?: Partial<Cases>) {
     super(data);
