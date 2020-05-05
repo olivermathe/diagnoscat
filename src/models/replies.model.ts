@@ -1,4 +1,5 @@
 import {Entity, model, property} from '@loopback/repository';
+import { Questions } from './'
 
 @model()
 export class Replies extends Entity {
@@ -21,6 +22,13 @@ export class Replies extends Entity {
   })
   case_id: number;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  value: string;
+
+  question: Questions | null;
 
   constructor(data?: Partial<Replies>) {
     super(data);

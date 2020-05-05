@@ -4,3 +4,4 @@ export * from './questions.controller';
 export * from './questions-replies.controller';
 export * from './cases-replies.controller';
 export * from './cases-solutions.controller';
+export * from './cases-result-response.model'

@@ -78,10 +78,8 @@ export class QuestionsController {
       },
     },
   })
-  async find(
-    @param.filter(Questions) filter?: Filter<Questions>,
-  ): Promise<Questions[]> {
-    return this.questionsRepository.find(filter);
+  async find(): Promise<Questions[]> {
+    return this.questionsRepository.find();
   }
 
   // @patch('/questions', {
