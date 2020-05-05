@@ -14,8 +14,13 @@ export class DatabaseDataSource extends juggler.DataSource
 
   constructor(
     @inject('datasources.config.database', {optional: true})
-    dsConfig: object = config,
+    dsConfig: any = config,
   ) {
+    dsConfig.host = process.env.DB_HOST ?? dsConfig.host
+    dsConfig.user = process.env.DB_USER ?? dsConfig.user
+    dsConfig.password = process.env.DB_PASS ?? dsConfig.password
+    dsConfig.database = process.env.DB_NAME ?? dsConfig.database
+    dsConfig.url = `${dsConfig.connector}://${dsConfig.user}:${dsConfig.password}@${dsConfig.host}/${dsConfig.database}`
     super(dsConfig);
   }
 
